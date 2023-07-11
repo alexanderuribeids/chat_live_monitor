@@ -1,0 +1,21 @@
+services:
+  front-app:
+    image: chat-monitor/front-app
+    ports:
+      - "3000:3000"
+    links:
+      - back-api
+    depends_on:
+      - back-api
+    networks:
+      - "frontend"
+      - "backend"
+  back-api:
+    image: "chat-monitor/back-api"
+    expose:
+      - "8000:8000"
+    networks:
+      - "backend"
+networks:
+  frontend:
+  backend:
